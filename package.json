@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "generate-source": "openapi-generator-cli generate -i http://localhost:3000/swagger-api-json --generator-name typescript-axios -o ./src --additional-properties=useSingleRequestParameter=true",
     "build": "tsc",
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -17,6 +18,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.9.0",
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.0.1",
     "eslint": "^8.56.0",
