@@ -195,6 +195,38 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
         /**
          *
          * @param {string} type
+         * @param {string} parentID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cardControllerFindChildren: (type, parentID, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'type' is not null or undefined
+            (0, common_1.assertParamExists)('cardControllerFindChildren', 'type', type);
+            // verify required parameter 'parentID' is not null or undefined
+            (0, common_1.assertParamExists)('cardControllerFindChildren', 'parentID', parentID);
+            const localVarPath = `/card/{type}/children-of/{parentID}`
+                .replace(`{${"type"}}`, encodeURIComponent(String(type)))
+                .replace(`{${"parentID"}}`, encodeURIComponent(String(parentID)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         *
+         * @param {string} type
          * @param {string} id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -337,6 +369,22 @@ const CardsCRUDApiFp = function (configuration) {
         /**
          *
          * @param {string} type
+         * @param {string} parentID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cardControllerFindChildren(type, parentID, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerFindChildren(type, parentID, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerFindChildren']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         *
+         * @param {string} type
          * @param {string} id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -413,6 +461,15 @@ const CardsCRUDApiFactory = function (configuration, basePath, axios) {
         },
         /**
          *
+         * @param {CardsCRUDApiCardControllerFindChildrenRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cardControllerFindChildren(requestParameters, options) {
+            return localVarFp.cardControllerFindChildren(requestParameters.type, requestParameters.parentID, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
          * @param {CardsCRUDApiCardControllerFindOneRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -467,6 +524,16 @@ class CardsCRUDApi extends base_1.BaseAPI {
      */
     cardControllerFindAll(requestParameters, options) {
         return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerFindAll(requestParameters.type, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     *
+     * @param {CardsCRUDApiCardControllerFindChildrenRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CardsCRUDApi
+     */
+    cardControllerFindChildren(requestParameters, options) {
+        return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerFindChildren(requestParameters.type, requestParameters.parentID, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *

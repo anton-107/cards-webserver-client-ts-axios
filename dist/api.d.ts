@@ -36,7 +36,7 @@ export interface CreateCardDto {
      * @type {string}
      * @memberof CreateCardDto
      */
-    'parentTaskID': string;
+    'parentCardID': string;
     /**
      *
      * @type {object}
@@ -67,7 +67,7 @@ export interface UpdateCardDto {
      * @type {string}
      * @memberof UpdateCardDto
      */
-    'parentTaskID': string;
+    'parentCardID': string;
     /**
      *
      * @type {object}
@@ -149,6 +149,14 @@ export declare const CardsCRUDApiAxiosParamCreator: (configuration?: Configurati
     /**
      *
      * @param {string} type
+     * @param {string} parentID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cardControllerFindChildren: (type: string, parentID: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @param {string} type
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -195,6 +203,14 @@ export declare const CardsCRUDApiFp: (configuration?: Configuration) => {
     /**
      *
      * @param {string} type
+     * @param {string} parentID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cardControllerFindChildren(type: string, parentID: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
+     * @param {string} type
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -237,6 +253,13 @@ export declare const CardsCRUDApiFactory: (configuration?: Configuration, basePa
      * @throws {RequiredError}
      */
     cardControllerFindAll(requestParameters: CardsCRUDApiCardControllerFindAllRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     *
+     * @param {CardsCRUDApiCardControllerFindChildrenRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cardControllerFindChildren(requestParameters: CardsCRUDApiCardControllerFindChildrenRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
     /**
      *
      * @param {CardsCRUDApiCardControllerFindOneRequest} requestParameters Request parameters.
@@ -290,6 +313,25 @@ export interface CardsCRUDApiCardControllerFindAllRequest {
      * @memberof CardsCRUDApiCardControllerFindAll
      */
     readonly type: string;
+}
+/**
+ * Request parameters for cardControllerFindChildren operation in CardsCRUDApi.
+ * @export
+ * @interface CardsCRUDApiCardControllerFindChildrenRequest
+ */
+export interface CardsCRUDApiCardControllerFindChildrenRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof CardsCRUDApiCardControllerFindChildren
+     */
+    readonly type: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CardsCRUDApiCardControllerFindChildren
+     */
+    readonly parentID: string;
 }
 /**
  * Request parameters for cardControllerFindOne operation in CardsCRUDApi.
@@ -377,6 +419,14 @@ export declare class CardsCRUDApi extends BaseAPI {
      * @memberof CardsCRUDApi
      */
     cardControllerFindAll(requestParameters: CardsCRUDApiCardControllerFindAllRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @param {CardsCRUDApiCardControllerFindChildrenRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CardsCRUDApi
+     */
+    cardControllerFindChildren(requestParameters: CardsCRUDApiCardControllerFindChildrenRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
     /**
      *
      * @param {CardsCRUDApiCardControllerFindOneRequest} requestParameters Request parameters.
