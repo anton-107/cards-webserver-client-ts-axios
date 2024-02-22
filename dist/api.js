@@ -325,6 +325,43 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         }),
+        /**
+         *
+         * @param {string} type
+         * @param {string} id
+         * @param {UpdateCardAttributesDto} updateCardAttributesDto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cardControllerUpdateCardAttributes: (type, id, updateCardAttributesDto, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'type' is not null or undefined
+            (0, common_1.assertParamExists)('cardControllerUpdateCardAttributes', 'type', type);
+            // verify required parameter 'id' is not null or undefined
+            (0, common_1.assertParamExists)('cardControllerUpdateCardAttributes', 'id', id);
+            // verify required parameter 'updateCardAttributesDto' is not null or undefined
+            (0, common_1.assertParamExists)('cardControllerUpdateCardAttributes', 'updateCardAttributesDto', updateCardAttributesDto);
+            const localVarPath = `/card/{type}/{id}/attributes`
+                .replace(`{${"type"}}`, encodeURIComponent(String(type)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'PATCH' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(updateCardAttributesDto, localVarRequestOptions, configuration);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
     };
 };
 exports.CardsCRUDApiAxiosParamCreator = CardsCRUDApiAxiosParamCreator;
@@ -431,6 +468,23 @@ const CardsCRUDApiFp = function (configuration) {
                 return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
             });
         },
+        /**
+         *
+         * @param {string} type
+         * @param {string} id
+         * @param {UpdateCardAttributesDto} updateCardAttributesDto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cardControllerUpdateCardAttributes(type, id, updateCardAttributesDto, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerUpdateCardAttributes(type, id, updateCardAttributesDto, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerUpdateCardAttributes']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
     };
 };
 exports.CardsCRUDApiFp = CardsCRUDApiFp;
@@ -494,6 +548,15 @@ const CardsCRUDApiFactory = function (configuration, basePath, axios) {
          */
         cardControllerUpdate(requestParameters, options) {
             return localVarFp.cardControllerUpdate(requestParameters.type, requestParameters.id, requestParameters.updateCardDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @param {CardsCRUDApiCardControllerUpdateCardAttributesRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cardControllerUpdateCardAttributes(requestParameters, options) {
+            return localVarFp.cardControllerUpdateCardAttributes(requestParameters.type, requestParameters.id, requestParameters.updateCardAttributesDto, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -564,6 +627,16 @@ class CardsCRUDApi extends base_1.BaseAPI {
      */
     cardControllerUpdate(requestParameters, options) {
         return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerUpdate(requestParameters.type, requestParameters.id, requestParameters.updateCardDto, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     *
+     * @param {CardsCRUDApiCardControllerUpdateCardAttributesRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CardsCRUDApi
+     */
+    cardControllerUpdateCardAttributes(requestParameters, options) {
+        return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerUpdateCardAttributes(requestParameters.type, requestParameters.id, requestParameters.updateCardAttributesDto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 exports.CardsCRUDApi = CardsCRUDApi;

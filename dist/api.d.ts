@@ -47,6 +47,19 @@ export interface CreateCardDto {
 /**
  *
  * @export
+ * @interface UpdateCardAttributesDto
+ */
+export interface UpdateCardAttributesDto {
+    /**
+     *
+     * @type {object}
+     * @memberof UpdateCardAttributesDto
+     */
+    'attributes': object;
+}
+/**
+ *
+ * @export
  * @interface UpdateCardDto
  */
 export interface UpdateCardDto {
@@ -179,6 +192,15 @@ export declare const CardsCRUDApiAxiosParamCreator: (configuration?: Configurati
      * @throws {RequiredError}
      */
     cardControllerUpdate: (type: string, id: string, updateCardDto: UpdateCardDto, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @param {string} type
+     * @param {string} id
+     * @param {UpdateCardAttributesDto} updateCardAttributesDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cardControllerUpdateCardAttributes: (type: string, id: string, updateCardAttributesDto: UpdateCardAttributesDto, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * CardsCRUDApi - functional programming interface
@@ -233,6 +255,15 @@ export declare const CardsCRUDApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     cardControllerUpdate(type: string, id: string, updateCardDto: UpdateCardDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
+     * @param {string} type
+     * @param {string} id
+     * @param {UpdateCardAttributesDto} updateCardAttributesDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cardControllerUpdateCardAttributes(type: string, id: string, updateCardAttributesDto: UpdateCardAttributesDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
 };
 /**
  * CardsCRUDApi - factory interface
@@ -281,6 +312,13 @@ export declare const CardsCRUDApiFactory: (configuration?: Configuration, basePa
      * @throws {RequiredError}
      */
     cardControllerUpdate(requestParameters: CardsCRUDApiCardControllerUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     *
+     * @param {CardsCRUDApiCardControllerUpdateCardAttributesRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cardControllerUpdateCardAttributes(requestParameters: CardsCRUDApiCardControllerUpdateCardAttributesRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
 };
 /**
  * Request parameters for cardControllerCreate operation in CardsCRUDApi.
@@ -397,6 +435,31 @@ export interface CardsCRUDApiCardControllerUpdateRequest {
     readonly updateCardDto: UpdateCardDto;
 }
 /**
+ * Request parameters for cardControllerUpdateCardAttributes operation in CardsCRUDApi.
+ * @export
+ * @interface CardsCRUDApiCardControllerUpdateCardAttributesRequest
+ */
+export interface CardsCRUDApiCardControllerUpdateCardAttributesRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof CardsCRUDApiCardControllerUpdateCardAttributes
+     */
+    readonly type: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CardsCRUDApiCardControllerUpdateCardAttributes
+     */
+    readonly id: string;
+    /**
+     *
+     * @type {UpdateCardAttributesDto}
+     * @memberof CardsCRUDApiCardControllerUpdateCardAttributes
+     */
+    readonly updateCardAttributesDto: UpdateCardAttributesDto;
+}
+/**
  * CardsCRUDApi - object-oriented interface
  * @export
  * @class CardsCRUDApi
@@ -451,4 +514,12 @@ export declare class CardsCRUDApi extends BaseAPI {
      * @memberof CardsCRUDApi
      */
     cardControllerUpdate(requestParameters: CardsCRUDApiCardControllerUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @param {CardsCRUDApiCardControllerUpdateCardAttributesRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CardsCRUDApi
+     */
+    cardControllerUpdateCardAttributes(requestParameters: CardsCRUDApiCardControllerUpdateCardAttributesRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
