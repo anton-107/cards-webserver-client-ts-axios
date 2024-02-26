@@ -47,6 +47,25 @@ export interface CreateCardDto {
 /**
  *
  * @export
+ * @interface SignInRequest
+ */
+export interface SignInRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof SignInRequest
+     */
+    'login': string;
+    /**
+     *
+     * @type {string}
+     * @memberof SignInRequest
+     */
+    'password': string;
+}
+/**
+ *
+ * @export
  * @interface UpdateCardAttributesDto
  */
 export interface UpdateCardAttributesDto {
@@ -98,7 +117,14 @@ export declare const CardsAuthApiAxiosParamCreator: (configuration?: Configurati
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    authControllerSignIn: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    authControllerCheckIdentity: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @param {SignInRequest} signInRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    authControllerSignIn: (signInRequest: SignInRequest, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
 };
 /**
  * CardsAuthApi - functional programming interface
@@ -110,7 +136,14 @@ export declare const CardsAuthApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    authControllerSignIn(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    authControllerCheckIdentity(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
+     * @param {SignInRequest} signInRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    authControllerSignIn(signInRequest: SignInRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
 };
 /**
  * CardsAuthApi - factory interface
@@ -122,8 +155,28 @@ export declare const CardsAuthApiFactory: (configuration?: Configuration, basePa
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    authControllerSignIn(options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    authControllerCheckIdentity(options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     *
+     * @param {CardsAuthApiAuthControllerSignInRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    authControllerSignIn(requestParameters: CardsAuthApiAuthControllerSignInRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
 };
+/**
+ * Request parameters for authControllerSignIn operation in CardsAuthApi.
+ * @export
+ * @interface CardsAuthApiAuthControllerSignInRequest
+ */
+export interface CardsAuthApiAuthControllerSignInRequest {
+    /**
+     *
+     * @type {SignInRequest}
+     * @memberof CardsAuthApiAuthControllerSignIn
+     */
+    readonly signInRequest: SignInRequest;
+}
 /**
  * CardsAuthApi - object-oriented interface
  * @export
@@ -137,7 +190,15 @@ export declare class CardsAuthApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CardsAuthApi
      */
-    authControllerSignIn(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    authControllerCheckIdentity(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @param {CardsAuthApiAuthControllerSignInRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CardsAuthApi
+     */
+    authControllerSignIn(requestParameters: CardsAuthApiAuthControllerSignInRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }
 /**
  * CardsCRUDApi - axios parameter creator

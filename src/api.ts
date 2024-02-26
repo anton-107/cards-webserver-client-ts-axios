@@ -73,6 +73,25 @@ export interface CreateCardDto {
 /**
  *
  * @export
+ * @interface SignInRequest
+ */
+export interface SignInRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof SignInRequest
+   */
+  login: string;
+  /**
+   *
+   * @type {string}
+   * @memberof SignInRequest
+   */
+  password: string;
+}
+/**
+ *
+ * @export
  * @interface UpdateCardAttributesDto
  */
 export interface UpdateCardAttributesDto {
@@ -128,9 +147,55 @@ export const CardsAuthApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    authControllerSignIn: async (
+    authControllerCheckIdentity: async (
       options: RawAxiosRequestConfig = {},
     ): Promise<RequestArgs> => {
+      const localVarPath = `/auth/whoami`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication Authorization required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {SignInRequest} signInRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    authControllerSignIn: async (
+      signInRequest: SignInRequest,
+      options: RawAxiosRequestConfig = {},
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'signInRequest' is not null or undefined
+      assertParamExists("authControllerSignIn", "signInRequest", signInRequest);
       const localVarPath = `/auth/signin`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -147,6 +212,8 @@ export const CardsAuthApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -155,6 +222,11 @@ export const CardsAuthApiAxiosParamCreator = function (
         ...headersFromBaseOptions,
         ...options.headers,
       };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        signInRequest,
+        localVarRequestOptions,
+        configuration,
+      );
 
       return {
         url: toPathString(localVarUrlObj),
@@ -177,13 +249,43 @@ export const CardsAuthApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async authControllerSignIn(
+    async authControllerCheckIdentity(
       options?: RawAxiosRequestConfig,
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.authControllerSignIn(options);
+        await localVarAxiosParamCreator.authControllerCheckIdentity(options);
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["CardsAuthApi.authControllerCheckIdentity"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration,
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
+     * @param {SignInRequest} signInRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async authControllerSignIn(
+      signInRequest: SignInRequest,
+      options?: RawAxiosRequestConfig,
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.authControllerSignIn(
+          signInRequest,
+          options,
+        );
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap["CardsAuthApi.authControllerSignIn"]?.[
@@ -216,13 +318,43 @@ export const CardsAuthApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    authControllerSignIn(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+    authControllerCheckIdentity(
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<void> {
       return localVarFp
-        .authControllerSignIn(options)
+        .authControllerCheckIdentity(options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {CardsAuthApiAuthControllerSignInRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    authControllerSignIn(
+      requestParameters: CardsAuthApiAuthControllerSignInRequest,
+      options?: RawAxiosRequestConfig,
+    ): AxiosPromise<void> {
+      return localVarFp
+        .authControllerSignIn(requestParameters.signInRequest, options)
         .then((request) => request(axios, basePath));
     },
   };
 };
+
+/**
+ * Request parameters for authControllerSignIn operation in CardsAuthApi.
+ * @export
+ * @interface CardsAuthApiAuthControllerSignInRequest
+ */
+export interface CardsAuthApiAuthControllerSignInRequest {
+  /**
+   *
+   * @type {SignInRequest}
+   * @memberof CardsAuthApiAuthControllerSignIn
+   */
+  readonly signInRequest: SignInRequest;
+}
 
 /**
  * CardsAuthApi - object-oriented interface
@@ -237,9 +369,25 @@ export class CardsAuthApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CardsAuthApi
    */
-  public authControllerSignIn(options?: RawAxiosRequestConfig) {
+  public authControllerCheckIdentity(options?: RawAxiosRequestConfig) {
     return CardsAuthApiFp(this.configuration)
-      .authControllerSignIn(options)
+      .authControllerCheckIdentity(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {CardsAuthApiAuthControllerSignInRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CardsAuthApi
+   */
+  public authControllerSignIn(
+    requestParameters: CardsAuthApiAuthControllerSignInRequest,
+    options?: RawAxiosRequestConfig,
+  ) {
+    return CardsAuthApiFp(this.configuration)
+      .authControllerSignIn(requestParameters.signInRequest, options)
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -286,6 +434,10 @@ export const CardsCRUDApiAxiosParamCreator = function (
       };
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
+
+      // authentication Authorization required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
@@ -339,6 +491,10 @@ export const CardsCRUDApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
+      // authentication Authorization required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -386,6 +542,10 @@ export const CardsCRUDApiAxiosParamCreator = function (
       };
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
+
+      // authentication Authorization required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
@@ -435,6 +595,10 @@ export const CardsCRUDApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
+      // authentication Authorization required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -482,6 +646,10 @@ export const CardsCRUDApiAxiosParamCreator = function (
       };
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
+
+      // authentication Authorization required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
@@ -534,6 +702,10 @@ export const CardsCRUDApiAxiosParamCreator = function (
       };
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
+
+      // authentication Authorization required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
@@ -597,6 +769,10 @@ export const CardsCRUDApiAxiosParamCreator = function (
       };
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
+
+      // authentication Authorization required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
