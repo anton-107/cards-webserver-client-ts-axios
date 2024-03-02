@@ -47,6 +47,19 @@ export interface CreateCardDto {
 /**
  *
  * @export
+ * @interface CreateSpaceDto
+ */
+export interface CreateSpaceDto {
+    /**
+     *
+     * @type {string}
+     * @memberof CreateSpaceDto
+     */
+    'spaceID': string;
+}
+/**
+ *
+ * @export
  * @interface SignInRequest
  */
 export interface SignInRequest {
@@ -69,6 +82,12 @@ export interface SignInRequest {
  * @interface UpdateCardAttributesDto
  */
 export interface UpdateCardAttributesDto {
+    /**
+     *
+     * @type {string}
+     * @memberof UpdateCardAttributesDto
+     */
+    'spaceID': string;
     /**
      *
      * @type {object}
@@ -106,6 +125,19 @@ export interface UpdateCardDto {
      * @memberof UpdateCardDto
      */
     'attributes': object;
+}
+/**
+ *
+ * @export
+ * @interface UpdateSpaceDto
+ */
+export interface UpdateSpaceDto {
+    /**
+     *
+     * @type {string}
+     * @memberof UpdateSpaceDto
+     */
+    'spaceID'?: string;
 }
 /**
  * CardsAuthApi - axios parameter creator
@@ -215,35 +247,39 @@ export declare const CardsCRUDApiAxiosParamCreator: (configuration?: Configurati
     cardControllerCreate: (type: string, createCardDto: CreateCardDto, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
+     * @param {string} spaceID
      * @param {string} type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cardControllerFindAll: (type: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    cardControllerFindAllInSpace: (spaceID: string, type: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
+     * @param {string} spaceID
      * @param {string} type
      * @param {string} parentID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cardControllerFindChildren: (type: string, parentID: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    cardControllerFindChildren: (spaceID: string, type: string, parentID: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
+     * @param {string} spaceID
      * @param {string} type
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cardControllerFindOne: (type: string, id: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    cardControllerFindOne: (spaceID: string, type: string, id: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
+     * @param {string} spaceID
      * @param {string} type
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cardControllerRemove: (type: string, id: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    cardControllerRemove: (spaceID: string, type: string, id: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
      * @param {string} type
@@ -278,35 +314,39 @@ export declare const CardsCRUDApiFp: (configuration?: Configuration) => {
     cardControllerCreate(type: string, createCardDto: CreateCardDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
      *
+     * @param {string} spaceID
      * @param {string} type
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cardControllerFindAll(type: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    cardControllerFindAllInSpace(spaceID: string, type: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
      *
+     * @param {string} spaceID
      * @param {string} type
      * @param {string} parentID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cardControllerFindChildren(type: string, parentID: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    cardControllerFindChildren(spaceID: string, type: string, parentID: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
      *
+     * @param {string} spaceID
      * @param {string} type
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cardControllerFindOne(type: string, id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    cardControllerFindOne(spaceID: string, type: string, id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
      *
+     * @param {string} spaceID
      * @param {string} type
      * @param {string} id
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cardControllerRemove(type: string, id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    cardControllerRemove(spaceID: string, type: string, id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
     /**
      *
      * @param {string} type
@@ -340,11 +380,11 @@ export declare const CardsCRUDApiFactory: (configuration?: Configuration, basePa
     cardControllerCreate(requestParameters: CardsCRUDApiCardControllerCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
     /**
      *
-     * @param {CardsCRUDApiCardControllerFindAllRequest} requestParameters Request parameters.
+     * @param {CardsCRUDApiCardControllerFindAllInSpaceRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cardControllerFindAll(requestParameters: CardsCRUDApiCardControllerFindAllRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    cardControllerFindAllInSpace(requestParameters: CardsCRUDApiCardControllerFindAllInSpaceRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
     /**
      *
      * @param {CardsCRUDApiCardControllerFindChildrenRequest} requestParameters Request parameters.
@@ -401,15 +441,21 @@ export interface CardsCRUDApiCardControllerCreateRequest {
     readonly createCardDto: CreateCardDto;
 }
 /**
- * Request parameters for cardControllerFindAll operation in CardsCRUDApi.
+ * Request parameters for cardControllerFindAllInSpace operation in CardsCRUDApi.
  * @export
- * @interface CardsCRUDApiCardControllerFindAllRequest
+ * @interface CardsCRUDApiCardControllerFindAllInSpaceRequest
  */
-export interface CardsCRUDApiCardControllerFindAllRequest {
+export interface CardsCRUDApiCardControllerFindAllInSpaceRequest {
     /**
      *
      * @type {string}
-     * @memberof CardsCRUDApiCardControllerFindAll
+     * @memberof CardsCRUDApiCardControllerFindAllInSpace
+     */
+    readonly spaceID: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CardsCRUDApiCardControllerFindAllInSpace
      */
     readonly type: string;
 }
@@ -419,6 +465,12 @@ export interface CardsCRUDApiCardControllerFindAllRequest {
  * @interface CardsCRUDApiCardControllerFindChildrenRequest
  */
 export interface CardsCRUDApiCardControllerFindChildrenRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof CardsCRUDApiCardControllerFindChildren
+     */
+    readonly spaceID: string;
     /**
      *
      * @type {string}
@@ -443,6 +495,12 @@ export interface CardsCRUDApiCardControllerFindOneRequest {
      * @type {string}
      * @memberof CardsCRUDApiCardControllerFindOne
      */
+    readonly spaceID: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CardsCRUDApiCardControllerFindOne
+     */
     readonly type: string;
     /**
      *
@@ -457,6 +515,12 @@ export interface CardsCRUDApiCardControllerFindOneRequest {
  * @interface CardsCRUDApiCardControllerRemoveRequest
  */
 export interface CardsCRUDApiCardControllerRemoveRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof CardsCRUDApiCardControllerRemove
+     */
+    readonly spaceID: string;
     /**
      *
      * @type {string}
@@ -537,12 +601,12 @@ export declare class CardsCRUDApi extends BaseAPI {
     cardControllerCreate(requestParameters: CardsCRUDApiCardControllerCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
     /**
      *
-     * @param {CardsCRUDApiCardControllerFindAllRequest} requestParameters Request parameters.
+     * @param {CardsCRUDApiCardControllerFindAllInSpaceRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CardsCRUDApi
      */
-    cardControllerFindAll(requestParameters: CardsCRUDApiCardControllerFindAllRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    cardControllerFindAllInSpace(requestParameters: CardsCRUDApiCardControllerFindAllInSpaceRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
     /**
      *
      * @param {CardsCRUDApiCardControllerFindChildrenRequest} requestParameters Request parameters.
@@ -583,4 +647,231 @@ export declare class CardsCRUDApi extends BaseAPI {
      * @memberof CardsCRUDApi
      */
     cardControllerUpdateCardAttributes(requestParameters: CardsCRUDApiCardControllerUpdateCardAttributesRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+}
+/**
+ * SpaceCRUDApi - axios parameter creator
+ * @export
+ */
+export declare const SpaceCRUDApiAxiosParamCreator: (configuration?: Configuration) => {
+    /**
+     *
+     * @param {CreateSpaceDto} createSpaceDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerCreate: (createSpaceDto: CreateSpaceDto, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerFindAll: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerFindOne: (id: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerRemove: (id: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
+     * @param {string} id
+     * @param {UpdateSpaceDto} updateSpaceDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerUpdate: (id: string, updateSpaceDto: UpdateSpaceDto, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+};
+/**
+ * SpaceCRUDApi - functional programming interface
+ * @export
+ */
+export declare const SpaceCRUDApiFp: (configuration?: Configuration) => {
+    /**
+     *
+     * @param {CreateSpaceDto} createSpaceDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerCreate(createSpaceDto: CreateSpaceDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerFindAll(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerFindOne(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
+     * @param {string} id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerRemove(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+    /**
+     *
+     * @param {string} id
+     * @param {UpdateSpaceDto} updateSpaceDto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerUpdate(id: string, updateSpaceDto: UpdateSpaceDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>>;
+};
+/**
+ * SpaceCRUDApi - factory interface
+ * @export
+ */
+export declare const SpaceCRUDApiFactory: (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) => {
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerCreate(requestParameters: SpaceCRUDApiSpaceControllerCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerFindAll(options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerFindOneRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerFindOne(requestParameters: SpaceCRUDApiSpaceControllerFindOneRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerRemoveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerRemove(requestParameters: SpaceCRUDApiSpaceControllerRemoveRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    spaceControllerUpdate(requestParameters: SpaceCRUDApiSpaceControllerUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<void>;
+};
+/**
+ * Request parameters for spaceControllerCreate operation in SpaceCRUDApi.
+ * @export
+ * @interface SpaceCRUDApiSpaceControllerCreateRequest
+ */
+export interface SpaceCRUDApiSpaceControllerCreateRequest {
+    /**
+     *
+     * @type {CreateSpaceDto}
+     * @memberof SpaceCRUDApiSpaceControllerCreate
+     */
+    readonly createSpaceDto: CreateSpaceDto;
+}
+/**
+ * Request parameters for spaceControllerFindOne operation in SpaceCRUDApi.
+ * @export
+ * @interface SpaceCRUDApiSpaceControllerFindOneRequest
+ */
+export interface SpaceCRUDApiSpaceControllerFindOneRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof SpaceCRUDApiSpaceControllerFindOne
+     */
+    readonly id: string;
+}
+/**
+ * Request parameters for spaceControllerRemove operation in SpaceCRUDApi.
+ * @export
+ * @interface SpaceCRUDApiSpaceControllerRemoveRequest
+ */
+export interface SpaceCRUDApiSpaceControllerRemoveRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof SpaceCRUDApiSpaceControllerRemove
+     */
+    readonly id: string;
+}
+/**
+ * Request parameters for spaceControllerUpdate operation in SpaceCRUDApi.
+ * @export
+ * @interface SpaceCRUDApiSpaceControllerUpdateRequest
+ */
+export interface SpaceCRUDApiSpaceControllerUpdateRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof SpaceCRUDApiSpaceControllerUpdate
+     */
+    readonly id: string;
+    /**
+     *
+     * @type {UpdateSpaceDto}
+     * @memberof SpaceCRUDApiSpaceControllerUpdate
+     */
+    readonly updateSpaceDto: UpdateSpaceDto;
+}
+/**
+ * SpaceCRUDApi - object-oriented interface
+ * @export
+ * @class SpaceCRUDApi
+ * @extends {BaseAPI}
+ */
+export declare class SpaceCRUDApi extends BaseAPI {
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SpaceCRUDApi
+     */
+    spaceControllerCreate(requestParameters: SpaceCRUDApiSpaceControllerCreateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SpaceCRUDApi
+     */
+    spaceControllerFindAll(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerFindOneRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SpaceCRUDApi
+     */
+    spaceControllerFindOne(requestParameters: SpaceCRUDApiSpaceControllerFindOneRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerRemoveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SpaceCRUDApi
+     */
+    spaceControllerRemove(requestParameters: SpaceCRUDApiSpaceControllerRemoveRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SpaceCRUDApi
+     */
+    spaceControllerUpdate(requestParameters: SpaceCRUDApiSpaceControllerUpdateRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<void, any>>;
 }

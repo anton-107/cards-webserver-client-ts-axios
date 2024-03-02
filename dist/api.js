@@ -25,7 +25,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CardsCRUDApi = exports.CardsCRUDApiFactory = exports.CardsCRUDApiFp = exports.CardsCRUDApiAxiosParamCreator = exports.CardsAuthApi = exports.CardsAuthApiFactory = exports.CardsAuthApiFp = exports.CardsAuthApiAxiosParamCreator = void 0;
+exports.SpaceCRUDApi = exports.SpaceCRUDApiFactory = exports.SpaceCRUDApiFp = exports.SpaceCRUDApiAxiosParamCreator = exports.CardsCRUDApi = exports.CardsCRUDApiFactory = exports.CardsCRUDApiFp = exports.CardsCRUDApiAxiosParamCreator = exports.CardsAuthApi = exports.CardsAuthApiFactory = exports.CardsAuthApiFp = exports.CardsAuthApiAxiosParamCreator = void 0;
 const axios_1 = __importDefault(require("axios"));
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -235,14 +235,18 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
         }),
         /**
          *
+         * @param {string} spaceID
          * @param {string} type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerFindAll: (type, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerFindAllInSpace: (spaceID, type, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'spaceID' is not null or undefined
+            (0, common_1.assertParamExists)('cardControllerFindAllInSpace', 'spaceID', spaceID);
             // verify required parameter 'type' is not null or undefined
-            (0, common_1.assertParamExists)('cardControllerFindAll', 'type', type);
-            const localVarPath = `/card/{type}`
+            (0, common_1.assertParamExists)('cardControllerFindAllInSpace', 'type', type);
+            const localVarPath = `/card/list/{spaceID}/{type}`
+                .replace(`{${"spaceID"}}`, encodeURIComponent(String(spaceID)))
                 .replace(`{${"type"}}`, encodeURIComponent(String(type)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
@@ -266,17 +270,21 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
         }),
         /**
          *
+         * @param {string} spaceID
          * @param {string} type
          * @param {string} parentID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerFindChildren: (type, parentID, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerFindChildren: (spaceID, type, parentID, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'spaceID' is not null or undefined
+            (0, common_1.assertParamExists)('cardControllerFindChildren', 'spaceID', spaceID);
             // verify required parameter 'type' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerFindChildren', 'type', type);
             // verify required parameter 'parentID' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerFindChildren', 'parentID', parentID);
-            const localVarPath = `/card/{type}/children-of/{parentID}`
+            const localVarPath = `/card/list/{spaceID}/{type}/children-of/{parentID}`
+                .replace(`{${"spaceID"}}`, encodeURIComponent(String(spaceID)))
                 .replace(`{${"type"}}`, encodeURIComponent(String(type)))
                 .replace(`{${"parentID"}}`, encodeURIComponent(String(parentID)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -301,17 +309,21 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
         }),
         /**
          *
+         * @param {string} spaceID
          * @param {string} type
          * @param {string} id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerFindOne: (type, id, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerFindOne: (spaceID, type, id, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'spaceID' is not null or undefined
+            (0, common_1.assertParamExists)('cardControllerFindOne', 'spaceID', spaceID);
             // verify required parameter 'type' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerFindOne', 'type', type);
             // verify required parameter 'id' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerFindOne', 'id', id);
-            const localVarPath = `/card/{type}/{id}`
+            const localVarPath = `/card/{spaceID}/{type}/{id}`
+                .replace(`{${"spaceID"}}`, encodeURIComponent(String(spaceID)))
                 .replace(`{${"type"}}`, encodeURIComponent(String(type)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -336,17 +348,21 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
         }),
         /**
          *
+         * @param {string} spaceID
          * @param {string} type
          * @param {string} id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerRemove: (type, id, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerRemove: (spaceID, type, id, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'spaceID' is not null or undefined
+            (0, common_1.assertParamExists)('cardControllerRemove', 'spaceID', spaceID);
             // verify required parameter 'type' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerRemove', 'type', type);
             // verify required parameter 'id' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerRemove', 'id', id);
-            const localVarPath = `/card/{type}/{id}`
+            const localVarPath = `/card/{spaceID}/{type}/{id}`
+                .replace(`{${"spaceID"}}`, encodeURIComponent(String(spaceID)))
                 .replace(`{${"type"}}`, encodeURIComponent(String(type)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -477,30 +493,32 @@ const CardsCRUDApiFp = function (configuration) {
         },
         /**
          *
+         * @param {string} spaceID
          * @param {string} type
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerFindAll(type, options) {
+        cardControllerFindAllInSpace(spaceID, type, options) {
             var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerFindAll(type, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerFindAllInSpace(spaceID, type, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerFindAll']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerFindAllInSpace']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
                 return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
             });
         },
         /**
          *
+         * @param {string} spaceID
          * @param {string} type
          * @param {string} parentID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerFindChildren(type, parentID, options) {
+        cardControllerFindChildren(spaceID, type, parentID, options) {
             var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerFindChildren(type, parentID, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerFindChildren(spaceID, type, parentID, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerFindChildren']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
                 return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -508,15 +526,16 @@ const CardsCRUDApiFp = function (configuration) {
         },
         /**
          *
+         * @param {string} spaceID
          * @param {string} type
          * @param {string} id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerFindOne(type, id, options) {
+        cardControllerFindOne(spaceID, type, id, options) {
             var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerFindOne(type, id, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerFindOne(spaceID, type, id, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerFindOne']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
                 return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -524,15 +543,16 @@ const CardsCRUDApiFp = function (configuration) {
         },
         /**
          *
+         * @param {string} spaceID
          * @param {string} type
          * @param {string} id
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerRemove(type, id, options) {
+        cardControllerRemove(spaceID, type, id, options) {
             var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerRemove(type, id, options);
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerRemove(spaceID, type, id, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerRemove']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
                 return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -593,12 +613,12 @@ const CardsCRUDApiFactory = function (configuration, basePath, axios) {
         },
         /**
          *
-         * @param {CardsCRUDApiCardControllerFindAllRequest} requestParameters Request parameters.
+         * @param {CardsCRUDApiCardControllerFindAllInSpaceRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerFindAll(requestParameters, options) {
-            return localVarFp.cardControllerFindAll(requestParameters.type, options).then((request) => request(axios, basePath));
+        cardControllerFindAllInSpace(requestParameters, options) {
+            return localVarFp.cardControllerFindAllInSpace(requestParameters.spaceID, requestParameters.type, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -607,7 +627,7 @@ const CardsCRUDApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         cardControllerFindChildren(requestParameters, options) {
-            return localVarFp.cardControllerFindChildren(requestParameters.type, requestParameters.parentID, options).then((request) => request(axios, basePath));
+            return localVarFp.cardControllerFindChildren(requestParameters.spaceID, requestParameters.type, requestParameters.parentID, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -616,7 +636,7 @@ const CardsCRUDApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         cardControllerFindOne(requestParameters, options) {
-            return localVarFp.cardControllerFindOne(requestParameters.type, requestParameters.id, options).then((request) => request(axios, basePath));
+            return localVarFp.cardControllerFindOne(requestParameters.spaceID, requestParameters.type, requestParameters.id, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -625,7 +645,7 @@ const CardsCRUDApiFactory = function (configuration, basePath, axios) {
          * @throws {RequiredError}
          */
         cardControllerRemove(requestParameters, options) {
-            return localVarFp.cardControllerRemove(requestParameters.type, requestParameters.id, options).then((request) => request(axios, basePath));
+            return localVarFp.cardControllerRemove(requestParameters.spaceID, requestParameters.type, requestParameters.id, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -667,13 +687,13 @@ class CardsCRUDApi extends base_1.BaseAPI {
     }
     /**
      *
-     * @param {CardsCRUDApiCardControllerFindAllRequest} requestParameters Request parameters.
+     * @param {CardsCRUDApiCardControllerFindAllInSpaceRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CardsCRUDApi
      */
-    cardControllerFindAll(requestParameters, options) {
-        return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerFindAll(requestParameters.type, options).then((request) => request(this.axios, this.basePath));
+    cardControllerFindAllInSpace(requestParameters, options) {
+        return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerFindAllInSpace(requestParameters.spaceID, requestParameters.type, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
@@ -683,7 +703,7 @@ class CardsCRUDApi extends base_1.BaseAPI {
      * @memberof CardsCRUDApi
      */
     cardControllerFindChildren(requestParameters, options) {
-        return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerFindChildren(requestParameters.type, requestParameters.parentID, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerFindChildren(requestParameters.spaceID, requestParameters.type, requestParameters.parentID, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
@@ -693,7 +713,7 @@ class CardsCRUDApi extends base_1.BaseAPI {
      * @memberof CardsCRUDApi
      */
     cardControllerFindOne(requestParameters, options) {
-        return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerFindOne(requestParameters.type, requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerFindOne(requestParameters.spaceID, requestParameters.type, requestParameters.id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
@@ -703,7 +723,7 @@ class CardsCRUDApi extends base_1.BaseAPI {
      * @memberof CardsCRUDApi
      */
     cardControllerRemove(requestParameters, options) {
-        return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerRemove(requestParameters.type, requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+        return (0, exports.CardsCRUDApiFp)(this.configuration).cardControllerRemove(requestParameters.spaceID, requestParameters.type, requestParameters.id, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
@@ -727,3 +747,366 @@ class CardsCRUDApi extends base_1.BaseAPI {
     }
 }
 exports.CardsCRUDApi = CardsCRUDApi;
+/**
+ * SpaceCRUDApi - axios parameter creator
+ * @export
+ */
+const SpaceCRUDApiAxiosParamCreator = function (configuration) {
+    return {
+        /**
+         *
+         * @param {CreateSpaceDto} createSpaceDto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerCreate: (createSpaceDto, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'createSpaceDto' is not null or undefined
+            (0, common_1.assertParamExists)('spaceControllerCreate', 'createSpaceDto', createSpaceDto);
+            const localVarPath = `/space`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication Authorization required
+            // http bearer authentication required
+            yield (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(createSpaceDto, localVarRequestOptions, configuration);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         *
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerFindAll: (options = {}) => __awaiter(this, void 0, void 0, function* () {
+            const localVarPath = `/space`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication Authorization required
+            // http bearer authentication required
+            yield (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         *
+         * @param {string} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerFindOne: (id, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'id' is not null or undefined
+            (0, common_1.assertParamExists)('spaceControllerFindOne', 'id', id);
+            const localVarPath = `/space/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication Authorization required
+            // http bearer authentication required
+            yield (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         *
+         * @param {string} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerRemove: (id, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'id' is not null or undefined
+            (0, common_1.assertParamExists)('spaceControllerRemove', 'id', id);
+            const localVarPath = `/space/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'DELETE' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication Authorization required
+            // http bearer authentication required
+            yield (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         *
+         * @param {string} id
+         * @param {UpdateSpaceDto} updateSpaceDto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerUpdate: (id, updateSpaceDto, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'id' is not null or undefined
+            (0, common_1.assertParamExists)('spaceControllerUpdate', 'id', id);
+            // verify required parameter 'updateSpaceDto' is not null or undefined
+            (0, common_1.assertParamExists)('spaceControllerUpdate', 'updateSpaceDto', updateSpaceDto);
+            const localVarPath = `/space/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'PATCH' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication Authorization required
+            // http bearer authentication required
+            yield (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(updateSpaceDto, localVarRequestOptions, configuration);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+    };
+};
+exports.SpaceCRUDApiAxiosParamCreator = SpaceCRUDApiAxiosParamCreator;
+/**
+ * SpaceCRUDApi - functional programming interface
+ * @export
+ */
+const SpaceCRUDApiFp = function (configuration) {
+    const localVarAxiosParamCreator = (0, exports.SpaceCRUDApiAxiosParamCreator)(configuration);
+    return {
+        /**
+         *
+         * @param {CreateSpaceDto} createSpaceDto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerCreate(createSpaceDto, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.spaceControllerCreate(createSpaceDto, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['SpaceCRUDApi.spaceControllerCreate']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         *
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerFindAll(options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.spaceControllerFindAll(options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['SpaceCRUDApi.spaceControllerFindAll']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         *
+         * @param {string} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerFindOne(id, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.spaceControllerFindOne(id, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['SpaceCRUDApi.spaceControllerFindOne']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         *
+         * @param {string} id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerRemove(id, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.spaceControllerRemove(id, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['SpaceCRUDApi.spaceControllerRemove']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         *
+         * @param {string} id
+         * @param {UpdateSpaceDto} updateSpaceDto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerUpdate(id, updateSpaceDto, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.spaceControllerUpdate(id, updateSpaceDto, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['SpaceCRUDApi.spaceControllerUpdate']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+    };
+};
+exports.SpaceCRUDApiFp = SpaceCRUDApiFp;
+/**
+ * SpaceCRUDApi - factory interface
+ * @export
+ */
+const SpaceCRUDApiFactory = function (configuration, basePath, axios) {
+    const localVarFp = (0, exports.SpaceCRUDApiFp)(configuration);
+    return {
+        /**
+         *
+         * @param {SpaceCRUDApiSpaceControllerCreateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerCreate(requestParameters, options) {
+            return localVarFp.spaceControllerCreate(requestParameters.createSpaceDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerFindAll(options) {
+            return localVarFp.spaceControllerFindAll(options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @param {SpaceCRUDApiSpaceControllerFindOneRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerFindOne(requestParameters, options) {
+            return localVarFp.spaceControllerFindOne(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @param {SpaceCRUDApiSpaceControllerRemoveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerRemove(requestParameters, options) {
+            return localVarFp.spaceControllerRemove(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
+         * @param {SpaceCRUDApiSpaceControllerUpdateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        spaceControllerUpdate(requestParameters, options) {
+            return localVarFp.spaceControllerUpdate(requestParameters.id, requestParameters.updateSpaceDto, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+exports.SpaceCRUDApiFactory = SpaceCRUDApiFactory;
+/**
+ * SpaceCRUDApi - object-oriented interface
+ * @export
+ * @class SpaceCRUDApi
+ * @extends {BaseAPI}
+ */
+class SpaceCRUDApi extends base_1.BaseAPI {
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SpaceCRUDApi
+     */
+    spaceControllerCreate(requestParameters, options) {
+        return (0, exports.SpaceCRUDApiFp)(this.configuration).spaceControllerCreate(requestParameters.createSpaceDto, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     *
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SpaceCRUDApi
+     */
+    spaceControllerFindAll(options) {
+        return (0, exports.SpaceCRUDApiFp)(this.configuration).spaceControllerFindAll(options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerFindOneRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SpaceCRUDApi
+     */
+    spaceControllerFindOne(requestParameters, options) {
+        return (0, exports.SpaceCRUDApiFp)(this.configuration).spaceControllerFindOne(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerRemoveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SpaceCRUDApi
+     */
+    spaceControllerRemove(requestParameters, options) {
+        return (0, exports.SpaceCRUDApiFp)(this.configuration).spaceControllerRemove(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     *
+     * @param {SpaceCRUDApiSpaceControllerUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SpaceCRUDApi
+     */
+    spaceControllerUpdate(requestParameters, options) {
+        return (0, exports.SpaceCRUDApiFp)(this.configuration).spaceControllerUpdate(requestParameters.id, requestParameters.updateSpaceDto, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+exports.SpaceCRUDApi = SpaceCRUDApi;
