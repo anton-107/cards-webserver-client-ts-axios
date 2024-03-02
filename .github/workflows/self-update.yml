@@ -2,11 +2,20 @@ name: Self-update on cards-webserver-nestjs-updated
 on:
   repository_dispatch:
     types: [cards-webserver-nestjs-updated]
+  workflow_dispatch: # This line enables manual triggering
 jobs:
-  respond:
+  generate-client-code:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "bot-107@github.com"
+          git config --global user.name "Bot 107"
+
       - name: Setup node
         uses: actions/setup-node@v3
         with:
@@ -18,3 +27,5 @@ jobs:
       - run: git add . && git commit -m 'auto-build'
       - name: Push changes
         run: git push origin main
+        env:
+            GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
