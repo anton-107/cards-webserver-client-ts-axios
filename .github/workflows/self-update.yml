@@ -29,5 +29,5 @@ jobs:
       - run: git add . && git commit -m 'auto-build'
       - name: Push changes
         run: git push origin HEAD:${GITHUB_REF#refs/heads/}
-        env:
-            GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+    env:
+        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
