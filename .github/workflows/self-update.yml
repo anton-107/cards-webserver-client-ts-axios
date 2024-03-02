@@ -13,3 +13,8 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm update
+      - run: npm run generate-source
+      - run: npm run build
+      - run: git add . && git commit -m 'auto-build'
+      - name: Push changes
+        run: git push origin main

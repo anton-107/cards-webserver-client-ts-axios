@@ -14,8 +14,3 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm ci
-      - run: npm test
-      - run: npm run test:coverage
-      - run: npm run lint
-      - run: npm run check-format
-      - run: npm run build

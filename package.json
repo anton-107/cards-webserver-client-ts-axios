@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "generate-source": "openapi-generator-cli generate -i http://localhost:3000/swagger-api-json --generator-name typescript-axios -o ./src --additional-properties=useSingleRequestParameter=true",
+    "generate-source": "openapi-generator-cli generate -i ./node_modules/cards-webserver-nestjs/dist/swagger-spec.json --generator-name typescript-axios -o ./src --additional-properties=useSingleRequestParameter=true",
     "build": "tsc",
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -17,6 +17,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "cards-webserver-nestjs": "github:anton-107/cards-webserver-nestjs"
+  },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.9.0",
     "@types/jest": "^29.5.12",
