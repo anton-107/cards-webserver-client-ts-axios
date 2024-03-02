@@ -21,11 +21,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-      #- run: npm install
-      #- run: npm update
-      #- run: npm run generate-source
-      #- run: npm run build
+      - run: npm install
+      - run: npm update
+      - run: npm run generate-source
+      - run: npm run build
       - run: date > timestamp.txt
+      - run: GIT_PAGER=cat git diff
       - run: git add . && git commit -m 'auto-build'
       - name: Push changes
         run: git push origin HEAD:${GITHUB_REF#refs/heads/}
