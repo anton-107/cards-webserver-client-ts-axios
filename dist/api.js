@@ -43,7 +43,7 @@ const CardsAuthApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authControllerCheckIdentity: (options = {}) => __awaiter(this, void 0, void 0, function* () {
+        authControllerCheckIdentity: (...args_1) => __awaiter(this, [...args_1], void 0, function* (options = {}) {
             const localVarPath = `/auth/whoami`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
@@ -71,7 +71,7 @@ const CardsAuthApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authControllerSignIn: (signInRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        authControllerSignIn: (signInRequest_1, ...args_2) => __awaiter(this, [signInRequest_1, ...args_2], void 0, function* (signInRequest, options = {}) {
             // verify required parameter 'signInRequest' is not null or undefined
             (0, common_1.assertParamExists)('authControllerSignIn', 'signInRequest', signInRequest);
             const localVarPath = `/auth/signin`;
@@ -110,8 +110,8 @@ const CardsAuthApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         authControllerCheckIdentity(options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.authControllerCheckIdentity(options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsAuthApi.authControllerCheckIdentity']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -125,8 +125,8 @@ const CardsAuthApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         authControllerSignIn(signInRequest, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.authControllerSignIn(signInRequest, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsAuthApi.authControllerSignIn']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -204,7 +204,7 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerCreate: (type, createCardDto, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerCreate: (type_1, createCardDto_1, ...args_1) => __awaiter(this, [type_1, createCardDto_1, ...args_1], void 0, function* (type, createCardDto, options = {}) {
             // verify required parameter 'type' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerCreate', 'type', type);
             // verify required parameter 'createCardDto' is not null or undefined
@@ -240,7 +240,7 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerFindAllInSpace: (spaceID, type, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerFindAllInSpace: (spaceID_1, type_2, ...args_2) => __awaiter(this, [spaceID_1, type_2, ...args_2], void 0, function* (spaceID, type, options = {}) {
             // verify required parameter 'spaceID' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerFindAllInSpace', 'spaceID', spaceID);
             // verify required parameter 'type' is not null or undefined
@@ -276,7 +276,7 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerFindChildren: (spaceID, type, parentID, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerFindChildren: (spaceID_2, type_3, parentID_1, ...args_3) => __awaiter(this, [spaceID_2, type_3, parentID_1, ...args_3], void 0, function* (spaceID, type, parentID, options = {}) {
             // verify required parameter 'spaceID' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerFindChildren', 'spaceID', spaceID);
             // verify required parameter 'type' is not null or undefined
@@ -315,7 +315,7 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerFindOne: (spaceID, type, id, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerFindOne: (spaceID_3, type_4, id_1, ...args_4) => __awaiter(this, [spaceID_3, type_4, id_1, ...args_4], void 0, function* (spaceID, type, id, options = {}) {
             // verify required parameter 'spaceID' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerFindOne', 'spaceID', spaceID);
             // verify required parameter 'type' is not null or undefined
@@ -354,7 +354,7 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerRemove: (spaceID, type, id, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerRemove: (spaceID_4, type_5, id_2, ...args_5) => __awaiter(this, [spaceID_4, type_5, id_2, ...args_5], void 0, function* (spaceID, type, id, options = {}) {
             // verify required parameter 'spaceID' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerRemove', 'spaceID', spaceID);
             // verify required parameter 'type' is not null or undefined
@@ -393,7 +393,7 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerUpdate: (type, id, updateCardDto, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerUpdate: (type_6, id_3, updateCardDto_1, ...args_6) => __awaiter(this, [type_6, id_3, updateCardDto_1, ...args_6], void 0, function* (type, id, updateCardDto, options = {}) {
             // verify required parameter 'type' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerUpdate', 'type', type);
             // verify required parameter 'id' is not null or undefined
@@ -433,7 +433,7 @@ const CardsCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cardControllerUpdateCardAttributes: (type, id, updateCardAttributesDto, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        cardControllerUpdateCardAttributes: (type_7, id_4, updateCardAttributesDto_1, ...args_7) => __awaiter(this, [type_7, id_4, updateCardAttributesDto_1, ...args_7], void 0, function* (type, id, updateCardAttributesDto, options = {}) {
             // verify required parameter 'type' is not null or undefined
             (0, common_1.assertParamExists)('cardControllerUpdateCardAttributes', 'type', type);
             // verify required parameter 'id' is not null or undefined
@@ -483,8 +483,8 @@ const CardsCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cardControllerCreate(type, createCardDto, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerCreate(type, createCardDto, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerCreate']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -499,8 +499,8 @@ const CardsCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cardControllerFindAllInSpace(spaceID, type, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerFindAllInSpace(spaceID, type, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerFindAllInSpace']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -516,8 +516,8 @@ const CardsCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cardControllerFindChildren(spaceID, type, parentID, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerFindChildren(spaceID, type, parentID, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerFindChildren']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -533,8 +533,8 @@ const CardsCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cardControllerFindOne(spaceID, type, id, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerFindOne(spaceID, type, id, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerFindOne']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -550,8 +550,8 @@ const CardsCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cardControllerRemove(spaceID, type, id, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerRemove(spaceID, type, id, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerRemove']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -567,8 +567,8 @@ const CardsCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cardControllerUpdate(type, id, updateCardDto, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerUpdate(type, id, updateCardDto, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerUpdate']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -584,8 +584,8 @@ const CardsCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cardControllerUpdateCardAttributes(type, id, updateCardAttributesDto, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.cardControllerUpdateCardAttributes(type, id, updateCardAttributesDto, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['CardsCRUDApi.cardControllerUpdateCardAttributes']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -759,7 +759,7 @@ const SpaceCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        spaceControllerCreate: (createSpaceDto, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        spaceControllerCreate: (createSpaceDto_1, ...args_1) => __awaiter(this, [createSpaceDto_1, ...args_1], void 0, function* (createSpaceDto, options = {}) {
             // verify required parameter 'createSpaceDto' is not null or undefined
             (0, common_1.assertParamExists)('spaceControllerCreate', 'createSpaceDto', createSpaceDto);
             const localVarPath = `/space`;
@@ -790,7 +790,7 @@ const SpaceCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        spaceControllerFindAll: (options = {}) => __awaiter(this, void 0, void 0, function* () {
+        spaceControllerFindAll: (...args_2) => __awaiter(this, [...args_2], void 0, function* (options = {}) {
             const localVarPath = `/space`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
@@ -818,7 +818,7 @@ const SpaceCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        spaceControllerFindOne: (id, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        spaceControllerFindOne: (id_1, ...args_3) => __awaiter(this, [id_1, ...args_3], void 0, function* (id, options = {}) {
             // verify required parameter 'id' is not null or undefined
             (0, common_1.assertParamExists)('spaceControllerFindOne', 'id', id);
             const localVarPath = `/space/{id}`
@@ -849,7 +849,7 @@ const SpaceCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        spaceControllerRemove: (id, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        spaceControllerRemove: (id_2, ...args_4) => __awaiter(this, [id_2, ...args_4], void 0, function* (id, options = {}) {
             // verify required parameter 'id' is not null or undefined
             (0, common_1.assertParamExists)('spaceControllerRemove', 'id', id);
             const localVarPath = `/space/{id}`
@@ -881,7 +881,7 @@ const SpaceCRUDApiAxiosParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        spaceControllerUpdate: (id, updateSpaceDto, options = {}) => __awaiter(this, void 0, void 0, function* () {
+        spaceControllerUpdate: (id_3, updateSpaceDto_1, ...args_5) => __awaiter(this, [id_3, updateSpaceDto_1, ...args_5], void 0, function* (id, updateSpaceDto, options = {}) {
             // verify required parameter 'id' is not null or undefined
             (0, common_1.assertParamExists)('spaceControllerUpdate', 'id', id);
             // verify required parameter 'updateSpaceDto' is not null or undefined
@@ -927,8 +927,8 @@ const SpaceCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         spaceControllerCreate(createSpaceDto, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.spaceControllerCreate(createSpaceDto, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['SpaceCRUDApi.spaceControllerCreate']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -941,8 +941,8 @@ const SpaceCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         spaceControllerFindAll(options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.spaceControllerFindAll(options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['SpaceCRUDApi.spaceControllerFindAll']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -956,8 +956,8 @@ const SpaceCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         spaceControllerFindOne(id, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.spaceControllerFindOne(id, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['SpaceCRUDApi.spaceControllerFindOne']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -971,8 +971,8 @@ const SpaceCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         spaceControllerRemove(id, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.spaceControllerRemove(id, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['SpaceCRUDApi.spaceControllerRemove']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
@@ -987,8 +987,8 @@ const SpaceCRUDApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         spaceControllerUpdate(id, updateSpaceDto, options) {
-            var _a, _b, _c;
             return __awaiter(this, void 0, void 0, function* () {
+                var _a, _b, _c;
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.spaceControllerUpdate(id, updateSpaceDto, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['SpaceCRUDApi.spaceControllerUpdate']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
